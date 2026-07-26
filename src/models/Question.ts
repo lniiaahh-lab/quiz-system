@@ -1,9 +1,9 @@
+import { Difficulty } from '../types/Difficulty';
 export interface Question {
     id: number;
     text: string;
     options: string[];
     correctAnswer: number;
-    difficulty: 'easy' | 'medium' | 'hard';
+    difficulty: Difficulty;
     points: number;
 }
-console.log('Hello, World!');
