@@ -6,22 +6,34 @@ class QuizService {
     constructor(questions = []) {
         this.questions = questions;
     }
-    addQuestion(question) {
+    delay(ms) {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve();
+            }, ms);
+        });
+    }
+    async addQuestion(question) {
+        await this.delay(1000);
         this.questions.push(question);
     }
-    removeQuestion(questionId) {
+    async removeQuestion(questionId) {
+        await this.delay(1000);
         this.questions = this.questions.filter(q => q.id !== questionId);
     }
-    getAllQuestions() {
+    async getAllQuestions() {
+        await this.delay(1000);
         return this.questions;
     }
-    updateQuestion(updatedQuestion) {
+    async updateQuestion(updatedQuestion) {
+        await this.delay(1000);
         const index = this.questions.findIndex(q => q.id === updatedQuestion.id);
         if (index !== -1) {
             this.questions[index] = updatedQuestion;
         }
     }
-    getQuestionById(questionId) {
+    async getQuestionById(questionId) {
+        await this.delay(1000);
         return this.questions.find(q => q.id === questionId);
     }
 }
