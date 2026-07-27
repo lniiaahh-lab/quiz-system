@@ -42,8 +42,17 @@ async function main() {
    
     console.log(new Date(), "Adding questions...");
 
-    await quizService.addQuestion(question1);
-    await quizService.addQuestion(question2); 
+    try {
+        await quizService.addQuestion(question1);
+        await quizService.addQuestion(question2);
+
+        console.log("Questions added successfully.");
+    } catch (error) {
+        console.log(error);
+    } finally {
+        console.log("Done.");
+    }
+
     const questions = await quizService.getAllQuestions();
     quiz1.questions = questions;
     

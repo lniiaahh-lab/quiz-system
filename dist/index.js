@@ -30,8 +30,17 @@ const player1 = {
 const quizService = new QuizService_1.QuizService();
 async function main() {
     console.log(new Date(), "Adding questions...");
-    await quizService.addQuestion(question1);
-    await quizService.addQuestion(question2);
+    try {
+        await quizService.addQuestion(question1);
+        await quizService.addQuestion(question2);
+        console.log("Questions added successfully.");
+    }
+    catch (error) {
+        console.log(error);
+    }
+    finally {
+        console.log("Program finished.");
+    }
     const questions = await quizService.getAllQuestions();
     quiz1.questions = questions;
     console.log(new Date(), "Questions added.");
