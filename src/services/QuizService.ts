@@ -1,3 +1,4 @@
+import { Player } from '../models/Player';
 import {Question} from '../models/Question';
 export class QuizService{
     private questions: Question[] = [];
@@ -96,5 +97,24 @@ export class QuizService{
             }
         }
     }
+    submitAnswer(player:Player,question:Question,selectedAnswer:number):boolean{
+        if(selectedAnswer === question.correctAnswer){
+            player.score+=question.points;
+            return true;
+        }
+            return false;
+              
+        }
+        reviewAnswer(question:Question,selectedAnswer:number):void{
+            console.log("Question:",question.text);
+            console.log("My Answer:",question.options[selectedAnswer]);
+            if(selectedAnswer === question.correctAnswer){
+                console.log("Correct!");
+            }
+            else{
+                console.log("Incorrect. The correct answer is:",question.options[question.correctAnswer]);
+            }
+            
+        }
+    }
 
-}

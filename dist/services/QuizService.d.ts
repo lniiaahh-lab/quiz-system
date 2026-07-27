@@ -1,3 +1,4 @@
+import { Player } from '../models/Player';
 import { Question } from '../models/Question';
 export declare class QuizService {
     private questions;
@@ -8,5 +9,7 @@ export declare class QuizService {
     getAllQuestions(): Promise<Question[]>;
     updateQuestion(updatedQuestion: Question): Promise<void>;
     getQuestionById(questionId: number): Promise<Question | undefined>;
+    private validateQuestion;
+    submitAnswer(player: Player, question: Question, selectedAnswer: number): boolean;
 }
 //# sourceMappingURL=QuizService.d.ts.map

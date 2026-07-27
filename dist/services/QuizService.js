@@ -14,6 +14,7 @@ class QuizService {
         });
     }
     async addQuestion(question) {
+        this.validateQuestion(question);
         await this.delay(1000);
         this.questions.push(question);
     }
@@ -35,6 +36,35 @@ class QuizService {
     async getQuestionById(questionId) {
         await this.delay(1000);
         return this.questions.find(q => q.id === questionId);
+    }
+    validateQuestion(question) {
+        if (question.options.length < 2) {
+            throw new Error("A question must have at least two options.");
+        }
+        if (question.text.trim() === "") {
+            throw new Error("Question text cannot be empty.");
+        }
+        if (question.correctAnswer < 0 || question.correctAnswer >= question.options.length) {
+            throw new Error("Correct answer index is out of bounds.");
+        }
+        if (question.points <= 0) {
+            throw new Error("Points cannot be negative or zero.");
+        }
+        if (question.id <= 0) {
+            throw new Error("Question ID cannot be negative or zero.");
+        }
+        for (const option of question.options) {
+            if (option.trim() === "") {
+                throw new Error("Question options cannot be empty.");
+            }
+        }
+    }
+    submitAnswer(player, question, selectedAnswer) {
+        if (selectedAnswer === question.correctAnswer) {
+            player.score += question.points;
+            return true;
+        }
+        return false;
     }
 }
 exports.QuizService = QuizService;

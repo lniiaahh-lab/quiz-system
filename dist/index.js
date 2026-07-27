@@ -34,11 +34,10 @@ async function main() {
     await quizService.addQuestion(question2);
     const questions = await quizService.getAllQuestions();
     quiz1.questions = questions;
-    console.log(new Date(), "newQuestions added.");
+    console.log(new Date(), "Questions added.");
     console.log(new Date(), questions);
     console.log(new Date(), "Finished adding questions.");
     console.log("Quiz:");
-    quiz1.questions = await quizService.getAllQuestions();
     console.log(quiz1);
     console.log("----------------");
     console.log("Player:");
@@ -46,11 +45,16 @@ async function main() {
     console.log("----------------");
     console.log("Questions:");
     console.log(questions);
-    player1.score += question1.points;
-    console.log("Player score after answering question 1:", player1.score);
-    player1.score += question2.points;
-    console.log("Player score after answering question 2:", player1.score);
-    console.log("Final Player score updated below:");
+    console.log("----------------");
+    console.log("Player answering questions...");
+    const result1 = quizService.submitAnswer(player1, question1, 2);
+    console.log("Question 1 correct?", result1);
+    console.log("Player score:", player1.score);
+    const result2 = quizService.submitAnswer(player1, question2, 0);
+    console.log("Question 2 correct?", result2);
+    console.log("Player score:", player1.score);
+    console.log("----------------");
+    console.log("Final Player:");
     console.log(player1);
 }
 main();

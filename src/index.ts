@@ -66,13 +66,24 @@ async function main() {
     console.log("Questions:");
  
     console.log(questions);
-    player1.score += question1.points;
-    console.log("Player score after answering question 1:", player1.score);
-    player1.score += question2.points;
-    console.log("Player score after answering question 2:", player1.score);
-    console.log("Final Player score updated below:");
+    
+    console.log("----------------");
+
+    console.log("Player answering questions...");
+
+    const result1 = quizService.submitAnswer(player1, question1, 2);
+    console.log("Question 1 correct?", result1);
+    console.log("Player score:", player1.score);
+
+    const result2 = quizService.submitAnswer(player1, question2, 0);
+    console.log("Question 2 correct?", result2);
+    console.log("Player score:", player1.score);
+
+    console.log("----------------");
+
+    console.log("Final Player:");
     console.log(player1);
-   
+
 }
 
 main();
