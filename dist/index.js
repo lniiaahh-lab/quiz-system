@@ -47,11 +47,11 @@ async function main() {
     console.log(questions);
     console.log("----------------");
     console.log("Player answering questions...");
-    const result1 = quizService.submitAnswer(player1, question1, 2);
-    console.log("Question 1 correct?", result1);
+    quizService.submitAnswer(player1, question1, 2);
+    quizService.reviewAnswer(question1, 2);
     console.log("Player score:", player1.score);
-    const result2 = quizService.submitAnswer(player1, question2, 0);
-    console.log("Question 2 correct?", result2);
+    quizService.submitAnswer(player1, question2, 0);
+    quizService.reviewAnswer(question2, 0);
     console.log("Player score:", player1.score);
     console.log("----------------");
     console.log("Final Player:");

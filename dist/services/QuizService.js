@@ -66,6 +66,16 @@ class QuizService {
         }
         return false;
     }
+    reviewAnswer(question, selectedAnswer) {
+        console.log("Question:", question.text);
+        console.log("My Answer:", question.options[selectedAnswer]);
+        if (selectedAnswer === question.correctAnswer) {
+            console.log("Correct!");
+        }
+        else {
+            console.log("Incorrect. The correct answer is:", question.options[question.correctAnswer]);
+        }
+    }
 }
 exports.QuizService = QuizService;
 //# sourceMappingURL=QuizService.js.map

@@ -11,5 +11,6 @@ export declare class QuizService {
     getQuestionById(questionId: number): Promise<Question | undefined>;
     private validateQuestion;
     submitAnswer(player: Player, question: Question, selectedAnswer: number): boolean;
+    reviewAnswer(question: Question, selectedAnswer: number): void;
 }
 //# sourceMappingURL=QuizService.d.ts.map
