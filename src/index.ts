@@ -1,6 +1,6 @@
 import {Question} from './models/Question';
-//import {Quiz} from './models/Quiz';
-//import {Player} from './models/Player';
+import {Quiz} from './models/Quiz';
+import {Player} from './models/Player';
 import {QuizService} from './services/QuizService';
 //import {Difficulty} from './types/Difficulty';
 
@@ -13,42 +13,66 @@ const question1:Question = {
     points:10
 }
 
+const question2:Question = {
+    id:2,
+    text:"What is the largest planet in our solar system?", 
+    options:["Earth","Jupiter","Mars","Saturn"],
+    correctAnswer:1,
+    difficulty:"Medium",
+    points:20
+}
+
+const quiz1 : Quiz = {
+    id: 1,
+    title: "My Quiz",
+    questions: []
+};
+
+const player1: Player = {
+    id: 1,
+    name: "John Doe",
+    score: 0
+};  
+
+
 const quizService = new QuizService();
 
 async function main() {
 
-    //console.log("Adding questions...");
+   
     console.log(new Date(), "Adding questions...");
+
     await quizService.addQuestion(question1);
+    await quizService.addQuestion(question2); 
+    const questions = await quizService.getAllQuestions();
+    quiz1.questions = questions;
+    
+    console.log(new Date(), "Questions added.");
   
 
-    //console.log("Questions added.");
-    console.log(new Date(), "newQuestions added.");
-
-    const questions = await quizService.getAllQuestions();
-
-    //console.log(questions);
+    
     console.log(new Date(), questions);
+    console.log(new Date(), "Finished adding questions.");
 
-    const question = await quizService.getQuestionById(1);
+    console.log("Quiz:");
+    console.log(quiz1);
+    console.log("----------------");
 
-    console.log(question);
+    console.log("Player:");
+    console.log(player1);
 
-    const updatedQuestion: Question = {
-        id: 1,
-        text: "What is the capital of Germany?",
-        options: ["Berlin", "Madrid", "Paris", "Rome"],
-        correctAnswer: 0,
-        difficulty: "Medium",
-        points: 15
-    };
-     await quizService.updateQuestion(updatedQuestion);
+    console.log("----------------");
 
-      console.log(await quizService.getQuestionById(1));
-
-    await quizService.removeQuestion(1);
-
-    console.log(await quizService.getAllQuestions());
+    console.log("Questions:");
+ 
+    console.log(questions);
+    player1.score += question1.points;
+    console.log("Player score after answering question 1:", player1.score);
+    player1.score += question2.points;
+    console.log("Player score after answering question 2:", player1.score);
+    console.log("Final Player score updated below:");
+    console.log(player1);
+   
 }
 
 main();
